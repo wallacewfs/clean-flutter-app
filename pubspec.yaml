@@ -33,3 +33,9 @@ flutter:
   assets:
     - lib/ui/assets/
 
+flutter_icons:
+  ios: true
+  android: true
+  image_path_android: lib/assets/icon/android.png
+  image_path_ios: lib/assets/icon/ios.png
+

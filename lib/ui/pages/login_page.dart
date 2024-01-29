@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      icon: Icon(Icons.email, color: Theme.of(context).primaryColorLight)
+                      icon: Icon(Icons.email, color: Theme.of(context).primaryColorLight),
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                     ),
                   ),
-                  ElevatedButton(onPressed: () {}, 
+                  ElevatedButton(onPressed: null,                      
                     child: Text('Entrar'.toUpperCase()),
                   ),
                   TextButton.icon(icon: const Icon(Icons.person),
