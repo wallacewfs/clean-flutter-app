@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
-import 'dart:math';
 
 import 'package:faker/faker.dart';
 import 'package:fordev/ui/pages/pages.dart';
@@ -132,4 +130,16 @@ testWidgets('Should present error if password is invalid', ( WidgetTester tester
       final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
       expect(button.onPressed, isNull);
   });  
+
+
+  testWidgets('Should call authentication on form submit', ( WidgetTester tester ) async {
+    await  loadPage(tester);
+
+    isFormValidController.add(true);
+    await tester.pump();
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+
+    verify(() => presenter.auth()).called(1);
+  });    
 }  
