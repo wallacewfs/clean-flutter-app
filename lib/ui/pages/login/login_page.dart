@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
     widget.presenter.dispose();
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(body: Builder(
       builder: (context) {
@@ -42,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         },);
 
         widget.presenter.mainErrorStream.listen((error) {
+          // ignore: unnecessary_null_comparison
           if (error != null) {
            ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -62,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.all(32),
                   child: Form(
                     child: Column(children: <Widget>[
-                      StreamBuilder<dynamic>(
+                      StreamBuilder<String>(
                           stream: widget.presenter.emailErrorStream,
                           builder: (context, snapshot) {
                             return TextFormField(
@@ -80,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                           }),
                       Padding(
                         padding: const EdgeInsets.only(top: 8, bottom: 32),
-                        child: StreamBuilder<dynamic>(
+                        child: StreamBuilder<String>(
                             stream: widget.presenter.passwordErrorStream,
                             builder: (context, snapshot) {
                               return TextFormField(
@@ -97,12 +99,11 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             }),
                       ),
-                      StreamBuilder<dynamic>(
+                      StreamBuilder<bool>(
                           stream: widget.presenter.isFormValidStream,
                           builder: (context, snapshot) {
                             return ElevatedButton(
-                              onPressed:
-                                  snapshot.data == true ? widget.presenter.auth : null,
+                              onPressed: snapshot.data == true ? widget.presenter.auth : null,
                               child: Text('Entrar'.toUpperCase()),
                             );
                           }),
