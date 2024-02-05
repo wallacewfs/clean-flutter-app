@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:faker/faker.dart';
 import 'package:fordev/ui/pages/pages.dart';
 
@@ -9,12 +12,20 @@ import '../mocks/mock.dart';
 
 void main() {
   late LoginPresenter presenter;
+  late StreamController<String> emailErrorController;
 
   Future<void> loadPage(WidgetTester tester) async {
       presenter = LoginPresenterSpy();
+      emailErrorController = StreamController<String>();
+      when(() => presenter.emailErrorStream).thenAnswer((_) => emailErrorController.stream);
+
       final loginPage = MaterialApp(home: LoginPage(presenter) );
       await tester.pumpWidget(loginPage);
   }
+
+  tearDown(() {
+    emailErrorController.close();
+}); 
 
   testWidgets('Should load with correct initial state', (WidgetTester tester) async {
       await loadPage(tester);
@@ -47,4 +58,14 @@ void main() {
     verify(() => presenter.validatePassword(password));
 
   });
-}
+
+  testWidgets('Should presente error if email is invalid', ( WidgetTester tester ) async {
+    await  loadPage(tester);
+
+    emailErrorController.add('any_error');
+    await tester.pump();
+
+    expect(find.text('any_error'), findsOneWidget);
+ 
+  });
+}  
