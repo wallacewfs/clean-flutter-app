@@ -13,11 +13,15 @@ import '../mocks/mock.dart';
 void main() {
   late LoginPresenter presenter;
   late StreamController<String> emailErrorController;
+  late StreamController<String> passwordErrorController;
 
   Future<void> loadPage(WidgetTester tester) async {
       presenter = LoginPresenterSpy();
       emailErrorController = StreamController<String>();
       when(() => presenter.emailErrorStream).thenAnswer((_) => emailErrorController.stream);
+      passwordErrorController = StreamController<String>();
+      when(() => presenter.passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
+
 
       final loginPage = MaterialApp(home: LoginPage(presenter) );
       await tester.pumpWidget(loginPage);
@@ -59,7 +63,7 @@ void main() {
 
   });
 
-  testWidgets('Should presente error if email is invalid', ( WidgetTester tester ) async {
+  testWidgets('Should present error if email is invalid', ( WidgetTester tester ) async {
     await  loadPage(tester);
 
     emailErrorController.add('any_error');
@@ -69,7 +73,7 @@ void main() {
  
   });
 
-  testWidgets('Should presente no error if email is valid', ( WidgetTester tester ) async {
+  testWidgets('Should present no error if email is valid', ( WidgetTester tester ) async {
     await  loadPage(tester);
 
     emailErrorController.add('');
@@ -79,5 +83,15 @@ void main() {
       find.descendant(of: find.bySemanticsLabel('Email'), matching: find.byType(Text)), 
       findsOneWidget,
     );
+  });
+
+testWidgets('Should present error if password is invalid', ( WidgetTester tester ) async {
+    await  loadPage(tester);
+
+    passwordErrorController.add('any_error');
+    await tester.pump();
+
+    expect(find.text('any_error'), findsOneWidget);
+ 
   });
 }  
