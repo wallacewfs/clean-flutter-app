@@ -20,7 +20,6 @@ class App extends StatelessWidget {
         primaryColor: primaryColor,
         primaryColorDark: primaryColorDark,
         primaryColorLight: primaryColorLight,
-        backgroundColor : Colors.white,
         textTheme: const TextTheme(
           headlineLarge: TextStyle(
             fontSize: 30 ,
@@ -46,9 +45,9 @@ class App extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20)
           )
-        )
+        ),
       ),
-      home: LoginPage(),
+      //home: const LoginPage(null),
     );
   }
 }
