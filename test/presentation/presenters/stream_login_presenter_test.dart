@@ -1,5 +1,4 @@
 import 'package:faker/faker.dart';
-import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -21,11 +20,16 @@ class StreamLoginPresenter {
 
 
 void main() {
-  test('should call validation with correct email', () {
-    final validation = ValidationSpy();
-    final sut = StreamLoginPresenter(validation: validation);
-    final email = faker.internet.email();
+    late StreamLoginPresenter sut;
+    late ValidationSpy validation;
+    late String email;
 
+  setUp(() {
+    validation = ValidationSpy();
+    sut = StreamLoginPresenter(validation: validation);
+    email = faker.internet.email();
+  });
+  test('should call validation with correct email', () {
     sut.validateEmail(email);
 
     verify(() => validation.validate(field: 'email', value: email)).called(1);
