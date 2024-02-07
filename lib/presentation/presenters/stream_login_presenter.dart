@@ -5,7 +5,9 @@ import 'dart:async';
 import '../protocols/validation.dart';
 
 class LoginState {
-  late String ?emailError;
+  String ?emailError;
+  
+  bool get isFormValid => false;
 }
 
 class StreamLoginPresenter {
@@ -15,6 +17,7 @@ class StreamLoginPresenter {
   final _state = LoginState();
 
   Stream<String?> get emailErrorStream => _controller.stream.map((state) => state.emailError).distinct();
+  Stream<bool> get isFormValidStream => _controller.stream.map((state) => state.isFormValid).distinct();
 
   StreamLoginPresenter({required this.validation});
 
