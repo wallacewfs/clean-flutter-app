@@ -5,7 +5,7 @@
      ✅ Chamar Validation ao alterar o email
      ✅ Notificar o emailErrorStream com o mesmo erro do Validation, caso retorne erro
      Notificar o emailErrorStream com null, caso o Validation não retorne erro
-     Não notificar o emailErrorStream se o valor for igual ao último
+     ✅ Não notificar o emailErrorStream se o valor for igual ao último
      Notificar o isFormValidStream após alterar o email
      Chamar Validation ao alterar a senha
      Notificar o passwordErrorStream com o mesmo erro do Validation, caso retorne erro

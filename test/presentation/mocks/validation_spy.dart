@@ -1,15 +1,13 @@
+import 'package:fordev/presentation/protocols/validation.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../presenters/stream_login_presenter_test.dart';
-
 class ValidationSpy extends Mock implements Validation {
-  var _;
-
   ValidationSpy() {
     mockValidation();
   }
 
-  When mockValidationCall(String? field) => when(() => validate(field: any(named: 'field') , value: any(named: 'value')));
-  void mockValidation({ String? field }) => mockValidationCall(field).thenReturn('');
+  // ignore: prefer_if_null_operators, unnecessary_this
+  When mockValidationCall(String? field) => when(() => this.validate(field: field == null ? any(named: 'field') : field , value: any(named: 'value')));
+  void mockValidation({ String? field , String? value }) => mockValidationCall(field).thenReturn(value);
 //  void mockValidationError({ String? field, required ValidationError value }) => this.mockValidationCall(field).thenReturn(value);
 }
