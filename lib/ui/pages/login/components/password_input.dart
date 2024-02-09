@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import '../login_presenter.dart';
 
 class PasswordInput extends StatelessWidget {
+  const PasswordInput({super.key});
+
   @override
   Widget build(BuildContext context) {
     final presenter = Provider.of<LoginPresenter>(context);

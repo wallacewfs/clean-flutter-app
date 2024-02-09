@@ -24,7 +24,7 @@ dev_dependencies:
 
   flutter_lints: 3.0.1
   flutter_launcher_icons: 0.13.1
-  mocktail: 1.0.1
+  mocktail: 1.0.3
   faker: 2.1.0
   test: ^1.24.9
 

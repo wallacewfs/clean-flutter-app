@@ -51,12 +51,12 @@ class _LoginPageState extends State<LoginPage> {
                     create: (_) => widget.presenter,
                     child: Form(
                       child: Column(children: <Widget>[
-                        EmailInput(),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 32),
+                        const EmailInput(),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8, bottom: 32),
                           child: PasswordInput(),
                         ),
-                        LoginButton(),
+                        const LoginButton(),
                         TextButton.icon(
                           icon: const Icon(Icons.person),
                           onPressed: () {},
